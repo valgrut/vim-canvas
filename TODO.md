@@ -6,3 +6,5 @@ TODO:
     - [ ] Pathogen
     - [ ] Native packages
     - [ ] vim-plug
+- [ ] Test on Windows
+- [ ] Test correct options behavior
