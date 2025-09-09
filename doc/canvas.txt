@@ -1,0 +1,43 @@
+*vim-canvas*
+
+Create or edit sketches next to your markdown.
+
+vim-canvas provides :Canvas which:
+  - If cursor is NOT on an image -> creates a new image in {attachments}/ and inserts
+    a markdown image link at the next line.
+  - If cursor IS on an existing image (in ``[...](path)`` or on filename) -> opens that
+    image in the configured external editor for editing.
+
+USAGE:
+    :Canvas
+
+CONFIG:
+    Put in your vimrc:
+
+        let g:canvas_editor = 'pinta'            " default (Linux); Windows: 'mspaint.exe'
+        let g:canvas_img_prefix = 'sketch'       " filename prefix
+        let g:canvas_attachments_dir = 'attachments'
+        let g:canvas_img_width = 800
+        let g:canvas_img_height = 600
+        let g:canvas_img_fmt = 'png'             " png|jpg|webp|bmp|gif|tif...
+
+DEPENDENCIES:
+    - python3
+    - Pillow (pip install pillow)
+    - an external editor, e.g. pinta (Linux) or mspaint.exe (Windows)
+
+INSTALL:
+    vim-plug:
+        Plug 'valgrut/vim-canvas'
+
+    Vundle:
+        Plugin 'valgrut/vim-canvas'
+
+    Pathogen:
+        git clone https://github.com/valgrut/vim-canvas ~/.vim/bundle/vim-canvas
+
+    Native Vim packages:
+        git clone https://github.com/valgrut/vim-canvas ~/.vim/pack/plugins/start/vim-canvas
+
+HELP TAGS:
+    :helptags ALL
