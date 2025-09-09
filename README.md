@@ -4,8 +4,8 @@ Create or edit sketches directly from the vim.
 
 
 ## Description
-`
-:Canvas` – quickly create or edit sketches alongside your Markdown files.
+
+`:Canvas` – quickly create or edit sketches alongside your Markdown files.
 
 - Creates `attachments/` in the same directory as the current file.
 - Launches your external editor (default: `pinta`) on a new blank image.
@@ -71,7 +71,7 @@ git clone https://github.com/valgrut/vim-canvas ~/.vim/pack/plugins/start/vim-ca
 Redefine default settings.
 
 ```
-let g:canvas_editor = 'pinta'            " Windows: 'mspaint.exe'
+let g:canvas_editor = 'pinta'
 let g:canvas_img_prefix = 'sketch'
 let g:canvas_attachments_dir = 'attachments'
 let g:canvas_img_width = 800
@@ -79,7 +79,7 @@ let g:canvas_img_height = 600
 let g:canvas_img_fmt = 'png'
 ```
 
-**Note**: Functionality on Windows is WIP!
+**Note**: Functionality on Windows is WIP (yet to be tested)!
 
 Users on Windows can set ((assuming it’s in PATH) or a full path to the editor exe):
 
