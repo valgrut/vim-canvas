@@ -28,14 +28,12 @@ if !exists('g:canvas_img_fmt') | let g:canvas_img_fmt = 'png' | endif
 command! Canvas call CanvasSketch()
 
 function! CanvasSketch()
-  " Absolute path to current file (we assume markdown, but works for any)
   let l:md_abs  = expand('%:p')
   let l:bufdir  = expand('%:p:h')
   let l:line    = getline('.')
 
-  " Try to extract (path) from ![alt](path)
+  " Try to get path from ![alt](path) on this line
   let l:path_from_md = matchstr(l:line, '!\[[^]]*\](\zs[^)]\+\ze)')
-
   " Fallback: filename under cursor
   let l:cfile = empty(l:path_from_md) ? expand('<cfile>') : l:path_from_md
 
@@ -53,19 +51,19 @@ function! CanvasSketch()
     endif
   endif
 
-  " Resolve path to our Python script inside this plugin
+  " Resolve plugin dir -> .../vim-canvas/plugin -> go up to repo root, then bin/
   let s:plugin_dir = expand('<sfile>:p:h')
-  let s:script = fnameescape(s:plugin_dir . '/../bin/canvas_sketcher.py')
+  let s:script = fnameescape(s:plugin_dir . '../bin/canvas_sketcher.py')
 
-  " Build args
+  " Build base command (use your globals if you set them)
   let l:cmd = 'python3 ' . s:script
   let l:cmd .= ' --file '        . shellescape(l:md_abs)
-  let l:cmd .= ' --editor '      . shellescape(get(g:, 'canvas_editor'))
-  let l:cmd .= ' --prefix '      . shellescape(get(g:, 'canvas_img_prefix'))
-  let l:cmd .= ' --attachments ' . shellescape(get(g:, 'canvas_attachments_dir'))
-  let l:cmd .= ' --width '       . string(get(g:, 'canvas_img_width'))
-  let l:cmd .= ' --height '      . string(get(g:, 'canvas_img_height'))
-  let l:cmd .= ' --format '      . shellescape(get(g:, 'canvas_img_fmt'))
+  let l:cmd .= ' --editor '      . shellescape(get(g:, 'canvas_editor', 'pinta'))
+  let l:cmd .= ' --prefix '      . shellescape(get(g:, 'canvas_img_prefix', 'sketch'))
+  let l:cmd .= ' --attachments ' . shellescape(get(g:, 'canvas_attachments_dir', 'attachments'))
+  let l:cmd .= ' --width '       . string(get(g:, 'canvas_img_width', 800))
+  let l:cmd .= ' --height '      . string(get(g:, 'canvas_img_height', 600))
+  let l:cmd .= ' --format '      . shellescape(get(g:, 'canvas_img_fmt', 'png'))
 
   if empty(l:target)
     " CREATE mode: expect markdown link on stdout
@@ -82,4 +80,3 @@ function! CanvasSketch()
     echo "Canvas: opened for editing -> " . l:target
   endif
 endfunction
-

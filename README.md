@@ -71,7 +71,10 @@ git clone https://github.com/valgrut/vim-canvas ~/.vim/pack/plugins/start/vim-ca
 Redefine default settings.
 
 ```
-let g:canvas_editor = 'pinta'
+let g:canvas_editor = 'pinta'  # Default, basic, tested.
+let g:canvas_editor = 'rnote'  # Better editor, vector-based.
+let g:canvas_editor = 'flatpak run com.github.flxzt.rnote'  # TODO: Test this.
+
 let g:canvas_img_prefix = 'sketch'
 let g:canvas_attachments_dir = 'attachments'
 let g:canvas_img_width = 800
