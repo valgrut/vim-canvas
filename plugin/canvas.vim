@@ -1,6 +1,11 @@
 " vim-canvas: :Canvas to create or edit sketches in attachments/
 " Maintainer: Jiri Peska <xpeskajiri@seznam.com>
 
+" Only simple way to really get plugin's directory. When called from inside the function, it got pwd.
+" Resolve plugin dir -> .../vim-canvas/plugin -> go up to repo root, then bin/
+let s:plugin_dir = expand('<sfile>:p:h')
+let s:script = fnameescape(s:plugin_dir . '/../bin/canvas_sketcher.py')
+
 if exists('g:loaded_canvas_plugin')
   finish
 endif
@@ -50,10 +55,6 @@ function! CanvasSketch()
       let l:target = l:cand
     endif
   endif
-
-  " Resolve plugin dir -> .../vim-canvas/plugin -> go up to repo root, then bin/
-  let s:plugin_dir = expand('<sfile>:p:h')
-  let s:script = fnameescape(s:plugin_dir . '../bin/canvas_sketcher.py')
 
   " Build base command (use your globals if you set them)
   let l:cmd = 'python3 ' . s:script
