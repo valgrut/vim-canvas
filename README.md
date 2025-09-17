@@ -62,33 +62,8 @@ git clone https://github.com/valgrut/vim-canvas ~/.vim/pack/plugins/start/vim-ca
 - python3
 - Pillow (`pip install pillow`)
 - An external editor (pinta, mspaint.exe, pinta.exe, etc.)
-
-
-### rnote configuration
-
-- **Warning**: Rnote document has to be exported manually.
-- rnote works better as an graphical editor, but has manual steps.
-- **Configuration**:
-
-    Put this into .vimrc file:
-
-    ```
-    let g:canvas_editor = 'rnote'
-    ```
-
-    Then follow those:
-    ```
-    mkdir -p ~/.local/bin/
-    # Copy following 2 lines into ~/.local/bin/rnote
-
-        #!/usr/bin/env bash
-        exec flatpak run com.github.flxzt.rnote "$@"
-
-    chmod +x ~/.local/bin/rnote
-    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
-    . ~/.profile
-    ```
-
+    - `dnf install pinta`
+    - `flatpak install rnote`
 
 -----------------------------------------------------------------------
 
@@ -120,6 +95,32 @@ If someone wants WSL -> Windows editor, they can set:
 ```
 let g:canvas_editor = 'pinta.exe'
 ```
+
+### rnote configuration
+
+- **Warning**: Rnote document has to be exported manually.
+- rnote works better as an graphical editor, but has manual steps.
+- **Configuration**:
+
+    Put this into .vimrc file:
+
+    ```
+    let g:canvas_editor = 'rnote'
+    ```
+
+    Then follow those:
+    ```
+    mkdir -p ~/.local/bin/
+    # Copy following 2 lines into ~/.local/bin/rnote
+
+        #!/usr/bin/env bash
+        exec flatpak run com.github.flxzt.rnote "$@"
+
+    chmod +x ~/.local/bin/rnote
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+    . ~/.profile
+    ```
+
 
 -----------------------------------------------------------------------
 
