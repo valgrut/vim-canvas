@@ -1,5 +1,4 @@
 " vim-canvas: :Canvas to create or edit sketches in attachments/
-" Maintainer: Jiri Peska <xpeskajiri@seznam.com>
 
 " Only simple way to really get plugin's directory. When called from inside the function, it got pwd.
 " Resolve plugin dir -> .../vim-canvas/plugin -> go up to repo root, then bin/
@@ -44,7 +43,8 @@ function! CanvasSketch()
 
   let l:img_ext = '\v\.(png|jpg|jpeg|webp|bmp|gif|tif|tiff)$'
   let l:target = ''
-
+  
+  " edit-mode detector”
   if !empty(l:cfile) && l:cfile =~? l:img_ext
     if l:cfile =~ '^/'
       let l:cand = l:cfile

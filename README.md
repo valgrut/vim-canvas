@@ -64,6 +64,32 @@ git clone https://github.com/valgrut/vim-canvas ~/.vim/pack/plugins/start/vim-ca
 - An external editor (pinta, mspaint.exe, pinta.exe, etc.)
 
 
+### rnote configuration
+
+- **Warning**: Rnote document has to be exported manually.
+- rnote works better as an graphical editor, but has manual steps.
+- **Configuration**:
+
+    Put this into .vimrc file:
+
+    ```
+    let g:canvas_editor = 'rnote'
+    ```
+
+    Then follow those:
+    ```
+    mkdir -p ~/.local/bin/
+    # Copy following 2 lines into ~/.local/bin/rnote
+
+        #!/usr/bin/env bash
+        exec flatpak run com.github.flxzt.rnote "$@"
+
+    chmod +x ~/.local/bin/rnote
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.profile
+    . ~/.profile
+    ```
+
+
 -----------------------------------------------------------------------
 
 ## Config (Optional)
@@ -72,8 +98,7 @@ Redefine default settings.
 
 ```
 let g:canvas_editor = 'pinta'  # Default, basic, tested.
-let g:canvas_editor = 'rnote'  # Better editor, vector-based.
-let g:canvas_editor = 'flatpak run com.github.flxzt.rnote'  # TODO: Test this.
+let g:canvas_editor = 'rnote'  # rnote - Better editor, vector-based. Required specific setup, manual saving required.
 
 let g:canvas_img_prefix = 'sketch'
 let g:canvas_attachments_dir = 'attachments'
@@ -95,6 +120,13 @@ If someone wants WSL -> Windows editor, they can set:
 ```
 let g:canvas_editor = 'pinta.exe'
 ```
+
+-----------------------------------------------------------------------
+
+## Known issues
+
+- [ ] Rnote does not create the document, user has to manually export it and select correct name.
+
 
 -----------------------------------------------------------------------
 
